@@ -1,0 +1,20 @@
+{
+  "phases": [
+    {
+      "dir": "1-project-scaffold",
+      "status": "pending"
+    },
+    {
+      "dir": "2-data-pipeline",
+      "status": "pending"
+    },
+    {
+      "dir": "3-rag-engine",
+      "status": "pending"
+    },
+    {
+      "dir": "4-streamlit-ui",
+      "status": "pending"
+    }
+  ]
+}

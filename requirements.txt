@@ -1,0 +1,14 @@
+openai>=1.30.0
+easyocr>=1.7.0
+sentence-transformers>=2.6.0
+langchain>=0.2.0
+langchain-openai>=0.1.8
+langchain-pinecone>=0.1.1
+langchain-community>=0.2.0
+pinecone>=3.2.0
+pdfplumber>=0.11.0
+streamlit>=1.35.0
+python-dotenv>=1.0.0
+tiktoken>=0.7.0
+pytest>=8.2.0
+pytest-mock>=3.14.0

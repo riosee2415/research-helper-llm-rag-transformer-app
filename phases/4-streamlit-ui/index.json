@@ -1,0 +1,9 @@
+{
+  "project": "Research RAG",
+  "phase": "4-streamlit-ui",
+  "steps": [
+    { "step": 0, "name": "session-manager", "status": "pending" },
+    { "step": 1, "name": "ui-components", "status": "pending" },
+    { "step": 2, "name": "app-main", "status": "pending" }
+  ]
+}

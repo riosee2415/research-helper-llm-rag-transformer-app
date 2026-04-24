@@ -1,0 +1,10 @@
+{
+  "project": "Research RAG",
+  "phase": "2-data-pipeline",
+  "steps": [
+    { "step": 0, "name": "loader", "status": "pending" },
+    { "step": 1, "name": "splitter", "status": "pending" },
+    { "step": 2, "name": "pipeline", "status": "pending" },
+    { "step": 3, "name": "ingest-tests", "status": "pending" }
+  ]
+}

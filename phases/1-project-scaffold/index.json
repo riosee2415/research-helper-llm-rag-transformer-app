@@ -1,0 +1,9 @@
+{
+  "project": "Research RAG",
+  "phase": "1-project-scaffold",
+  "steps": [
+    { "step": 0, "name": "env-config", "status": "pending" },
+    { "step": 1, "name": "src-structure", "status": "pending" },
+    { "step": 2, "name": "entry-points", "status": "pending" }
+  ]
+}

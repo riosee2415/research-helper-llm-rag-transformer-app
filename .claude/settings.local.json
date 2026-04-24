@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(venv/Scripts/python -c \"from src.rag.chains import format_context; print\\('chains ok'\\)\")",
+      "Bash(venv/Scripts/python -c \"from src.rag.engine import RAGEngine; print\\('engine ok'\\)\")",
+      "Bash(venv/Scripts/pytest tests/ -v --tb=short)",
+      "Bash(git add *)",
+      "Bash(git reset *)",
+      "Bash(git commit -m ' *)",
+      "Bash(echo \"venv/\")",
+      "Bash(echo \"*.pyc\")",
+      "Bash(echo \"__pycache__/\")",
+      "Bash(echo \"*.egg-info/\")",
+      "Bash(echo \"logs/\")",
+      "Bash(venv/Scripts/python -c \"import langchain_core; print\\(langchain_core.__version__\\)\")",
+      "Bash(venv/Scripts/python -c \"from langchain_core.retrievers import BaseRetriever; print\\([m for m in dir\\(BaseRetriever\\) if 'relevant' in m or 'invoke' in m]\\)\")",
+      "Bash(git commit -m 'fix: replace get_relevant_documents with invoke \\(langchain-core 1.3.1 breaking change\\) *)",
+      "Bash(venv/Scripts/python ingest.py --dir rag_data)",
+      "Bash(venv/Scripts/python -c ' *)",
+      "Bash(git commit -m 'fix: correct similarity threshold and add Pinecone status UI *)",
+      "Bash(git commit -m 'docs: add deployment guide, Dockerfile, docker-compose, render.yaml, Streamlit config *)",
+      "Bash(where tesseract *)",
+      "Bash(venv/Scripts/python -c \"import pytesseract; print\\('pytesseract ok'\\)\")",
+      "Bash(venv/Scripts/python -c \"import easyocr; print\\('easyocr ok'\\)\")",
+      "Bash(venv/Scripts/pip install *)",
+      "Bash(set PYTHONIOENCODING=utf-8)",
+      "Bash(dir *)",
+      "Bash(venv/Scripts/pytest tests/test_ingest.py -v --tb=short)",
+      "Bash(pytest tests/ -q)",
+      "Bash(venv/Scripts/pytest tests/ -q)",
+      "Bash(python -c ' *)",
+      "Bash(PYTHONIOENCODING=utf-8 venv/Scripts/python ingest.py --dir rag_data)",
+      "Bash(tasklist /FI \"IMAGENAME eq python.exe\" /FO CSV)",
+      "Bash(python -c \"import fitz; print\\('PyMuPDF version:', fitz.__version__\\)\")",
+      "Bash(\"venv/Scripts/python\")",
+      "Bash(venv/Scripts/python -c \"import fitz; print\\('PyMuPDF version:', fitz.__version__\\)\")",
+      "Bash(venv/Scripts/python)",
+      "Bash(venv/Scripts/pip list *)",
+      "Bash(venv/Scripts/pytest tests/test_ingest.py -q)",
+      "Bash(venv/Scripts/python -c \"from sentence_transformers import CrossEncoder; print\\('sentence-transformers OK'\\)\")"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+# Python
+venv/
+.venv/
+*.pyc
+*.pyo
+__pycache__/
+*.egg-info/
+dist/
+build/
+*.so
+
+# Runtime data
+logs/
+data/
+data/sessions/
+
+# Secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# PDF data (인제스트 후 Pinecone에 있으므로 git 불필요)
+rag_data/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# phase execution outputs
+phases/**/phase*-output.json
+phases/**/step*-output.json

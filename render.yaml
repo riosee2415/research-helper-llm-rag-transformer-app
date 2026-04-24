@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: research-rag
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.headless true --server.address 0.0.0.0
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: PINECONE_API_KEY
+        sync: false
+    disk:
+      name: sessions-disk
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1

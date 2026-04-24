@@ -1,0 +1,10 @@
+{
+  "project": "Research RAG",
+  "phase": "3-rag-engine",
+  "steps": [
+    { "step": 0, "name": "retriever", "status": "pending" },
+    { "step": 1, "name": "chains", "status": "pending" },
+    { "step": 2, "name": "engine", "status": "pending" },
+    { "step": 3, "name": "rag-tests", "status": "pending" }
+  ]
+}
