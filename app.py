@@ -1,10 +1,12 @@
 """Streamlit main application — Research RAG."""
 
 import logging
+import uuid
 
 import streamlit as st
 
 import config
+from config import SESSION_DIR
 
 config.setup_logging("app")
 logger = logging.getLogger("app")
@@ -282,19 +284,15 @@ hr { border-color: #b8cce4 !important; opacity: 1 !important; }
 </style>"""
 
 
-# ─── Cached resources ─────────────────────────────────────────────────────────
-
-@st.cache_resource(show_spinner="AI 엔진 초기화 중...")
-def get_engine() -> RAGEngine:
-    return RAGEngine()
-
-
-@st.cache_resource(show_spinner=False)
-def get_session_manager() -> SessionManager:
-    return SessionManager()
-
-
-# ─── Session state ────────────────────────────────────────────────────────────
+# ─── Per-user session state ───────────────────────────────────────────────────
+#
+# @st.cache_resource creates a single shared instance across ALL users.
+# RAGEngine holds ConversationBufferMemory — sharing it leaks chat history
+# between users. Instead, each browser connection gets its own engine and
+# session manager stored in st.session_state (which is per-connection).
+#
+# user_ns: a UUID assigned once per browser tab, used to namespace the
+# session files directory so users never see each other's history.
 
 def _init_state() -> None:
     defaults: dict = {
@@ -303,6 +301,7 @@ def _init_state() -> None:
         "engine_ready": False,
         "session_id": None,
         "dark_mode": True,
+        "user_ns": str(uuid.uuid4()),  # unique namespace per browser connection
     }
     for k, v in defaults.items():
         if k not in st.session_state:
@@ -313,8 +312,20 @@ _init_state()
 
 if not st.session_state.initialized:
     try:
-        _eng = get_engine()
-        _sm = get_session_manager()
+        # Engine: per-user instance — never shared between connections
+        if "engine" not in st.session_state:
+            with st.spinner("AI 엔진 초기화 중..."):
+                st.session_state.engine = RAGEngine()
+
+        # Session manager: per-user directory so load_latest_session()
+        # only sees files created by this connection
+        if "session_manager" not in st.session_state:
+            user_session_dir = SESSION_DIR / st.session_state.user_ns
+            st.session_state.session_manager = SessionManager(session_dir=user_session_dir)
+
+        _eng: RAGEngine = st.session_state.engine
+        _sm: SessionManager = st.session_state.session_manager
+
         latest = _sm.load_latest_session()
         if latest:
             st.session_state.session_id = latest["session_id"]
@@ -345,8 +356,8 @@ if not st.session_state.engine_ready:
     )
     st.stop()
 
-engine = get_engine()
-session_manager = get_session_manager()
+engine: RAGEngine = st.session_state.engine
+session_manager: SessionManager = st.session_state.session_manager
 
 
 # ─── Base CSS (always applied) ────────────────────────────────────────────────
